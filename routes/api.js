@@ -28,23 +28,13 @@ router.post('/api/notes', (req, res) => {
 });
 //Borrar nota con parametro id
 router.delete('/api/notes/:id', (req, res) => {
-     fs.readFile("./db/db.json",'utf-8',(error,data)=>{
-        if(error){
-            console.error(error);
-        }else{
-            const array = JSON.parse(data);
-            for(let i = 0; i < array.length; i++){
-                if (array[i].id=== req.params.id){
-                    array.splice(i, 1);
-                  }
-            };
-            fs.writeFile('db/db.json',JSON.stringify(array), (error) => {
-                error ? console.error(err) : console.info(`\nSe borro la nota`)
-            });
-        };
-
-    });
-  
+    for(let i = 0; i < data.length; i++){
+        if (data[i].id=== req.params.id){
+            data.splice(i, 1);
+            }
+        }
+        console.info('La nota se elimino');
+        res.json();
   });
   module.exports = router;
 
